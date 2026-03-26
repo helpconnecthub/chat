@@ -213,10 +213,10 @@
 
   <!-- Avatars -->  
   <div class="avatars">  
-    <div class="avatar"><img src="https://i.pravatar.cc/150?img=3" alt="user"></div>  
-    <div class="avatar"><img src="https://i.pravatar.cc/150?img=47" alt="user"></div>  
-    <div class="avatar"><img src="https://i.pravatar.cc/150?img=12" alt="user"></div>  
+    <div class="avatar"><img src="https://i.pravatar.cc/150?img=5" alt="user"></div>  
     <div class="avatar"><img src="https://i.pravatar.cc/150?img=44" alt="user"></div>  
+    <div class="avatar"><img src="https://i.pravatar.cc/150?img=22" alt="user"></div>  
+    <div class="avatar"><img src="https://i.pravatar.cc/150?img=61" alt="user"></div>  
   </div>  
 
   <!-- Gender -->  
@@ -256,16 +256,17 @@
   setInterval(updateTicker, 3000);  
 
   // ─── Random Avatars ───────────────────────────────────────
-  // pravatar.cc pe 1 se 70 tak images available hain
+  // Sirf female image IDs (pravatar.cc pe verified female photos)
+  const femaleImgs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,36,37,38,39,40,41,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70];
   const usedNums = new Set();
 
   function getRandomPortrait() {
     let num;
     do {
-      num = Math.floor(Math.random() * 70) + 1;
-    } while (usedNums.has(num) && usedNums.size < 70);
+      num = femaleImgs[Math.floor(Math.random() * femaleImgs.length)];
+    } while (usedNums.has(num) && usedNums.size < femaleImgs.length);
     usedNums.add(num);
-    if (usedNums.size > 60) usedNums.clear();
+    if (usedNums.size > femaleImgs.length - 5) usedNums.clear();
     return `https://i.pravatar.cc/150?img=${num}`;
   }
 
@@ -290,8 +291,8 @@
     }, 500);
   }
 
-  // Har 2 second baad ek random avatar badlega
-  setInterval(rotateOneAvatar, 2000);
+  // Har 1 minute baad ek random female avatar badlega
+  setInterval(rotateOneAvatar, 60000);
 
   // ─── Gender toggle ────────────────────────────────────────  
   function selectGender(btn) {  
